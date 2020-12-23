@@ -1,3 +1,5 @@
+const airtable = require("./airtable.js")
+
 console.log('from background')
 
 chrome.tabs.onActivated.addListener(tab => {
@@ -14,6 +16,14 @@ chrome.tabs.onActivated.addListener(tab => {
 chrome.runtime.onMessage.addListener((req, sender, res) => {
     if (req.message === 'linkedin parse complete')
         chrome.storage.local.get('linkedinPayload', storage => {
-            console.log(storage.linkedinPayload)
+            airtable.post('/currentData', {
+                "records": [
+                    {
+                        "fields": {
+                            "data": storage.linkedinPayload
+                        }
+                    }
+                ]
+            })
         })
 })
