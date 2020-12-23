@@ -3,11 +3,11 @@
     "version": "0.1.0",
     "manifest_version": 2,
     "background":  {
-        "scripts": ["./popup/src/background.js"]
+        "scripts": ["./background/dist/main.js"]
     },
     "options_page": "./options.html",
     "browser_action": {
-        "default_popup": "./popup/dist/index.html"
+        "default_popup": "./background/dist/index.html"
     },
     "permissions": [
         "tabs",
